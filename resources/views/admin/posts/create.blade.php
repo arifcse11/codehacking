@@ -25,7 +25,7 @@
 
         {!! Form::label('category_id','Category:') !!}
 
-        {!! Form::select('category_id', [''=>'Choose Options'], null , ['class'=>'form-control']) !!}
+        {!! Form::select('category_id', [''=>'Choose Options'] + $categories, null , ['class'=>'form-control']) !!}
 
     </div>
 
