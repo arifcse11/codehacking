@@ -25,9 +25,9 @@ class PostCreateRequest extends Request
     {
         return [
             
-            /*'title' => 'required',
+            'title' => 'required',
             'category_id' => 'required',
-            'body' => 'required'*/
+            'body' => 'required'
             
         ];
     }
