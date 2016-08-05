@@ -55,6 +55,14 @@
     @endif
 
 
+    @if(Session::has('reply_message'))
+
+        <p class="bg-success">{{session('reply_message')}}</p>
+
+
+    @endif
+
+
     @if(Auth::check())
 
     <div class="well">
@@ -116,6 +124,8 @@
 
                 @foreach($comment->replies as $reply)
 
+                    @if($reply->is_active == 1)
+
 
             <div id="nested-comment" class="media">
                 <a class="pull-left" href="#">
@@ -133,6 +143,8 @@
 
             </div>
 
+           @endif
+
                 @endforeach
 
                 @endif
@@ -141,7 +153,7 @@
 
                 <button class="toggle-reply btn btn-primary pull-right">Reply</button>
 
-                <div class="comment-reply">
+                <div class="comment-reply col-sm-6">
 
             {!! Form::open(['method'=>'POST', 'action'=>'CommentRepliesController@createReply'])!!}
 
