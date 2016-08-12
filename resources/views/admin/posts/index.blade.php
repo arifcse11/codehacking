@@ -59,7 +59,7 @@
             <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
             <td><a href="{{route('admin.posts.edit',$post->id)}}">{{$post->title}}</a></td>
             <td>{{str_limit($post->body,30)}}</td>
-            <td><a href="{{route('post.home', $post->id)}}">View Post</a></td>
+            <td><a href="{{route('post.home', $post->slug)}}">View Post</a></td>
             <td><a href="{{route('admin.comments.show',$post->id)}}">View Comment</a></td>
             <td>{{$post->created_at->diffForHumans()}}</td>
             <td>{{$post->updated_at->diffForHumans()}}</td>
@@ -72,5 +72,15 @@
 
         </tbody>
       </table>
+
+
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-5">
+
+           {{$posts->render()}}
+
+        </div>
+    </div>
 
 @endsection

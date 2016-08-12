@@ -110,7 +110,7 @@
 
     <div class="media">
         <a class="pull-left" href="#">
-            <img height="64" class="media-object" src="{{$comment->photo}}" alt="">
+            <img height="64" class="media-object" src="{{$comment->photo ? $comment->photo : '/images/default.jpg'}}" alt="">
         </a>
         <div class="media-body">
             <h4 class="media-heading">{{$comment->author}}

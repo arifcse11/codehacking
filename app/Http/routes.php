@@ -11,15 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*Route::get('/', function () {
+    return view('blog');
+});*/
+
+
+Route::get('/', 'AdminPostsController@posts');
+
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
 Route::get('/post/{id}', ['as'=>'post.home', 'uses'=>'AdminPostsController@post']);
+
+Route::get('/posts/{category}', ['as'=>'posts.category', 'uses'=>'AdminPostsController@getPostByCategory']);
 
 
 
@@ -45,6 +51,16 @@ Route::resource('/admin/media', 'AdminMediasController');
 Route::resource('/admin/comments', 'PostCommentsController');
 
 Route::resource('/admin/comment/replies', 'CommentRepliesController');
+
+
+});
+
+
+Route::group(['middleware'=>'auth'], function(){
+
+
+    Route::post('post/comment', 'PostCommentsController@store');
+
 
 
 });

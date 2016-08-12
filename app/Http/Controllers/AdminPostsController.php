@@ -22,7 +22,7 @@ class AdminPostsController extends Controller
     public function index()
     {
         
-        $posts = Post::all();
+        $posts = Post::paginate(2);
         
         return view('admin.posts.index', compact('posts'));
         
@@ -166,17 +166,39 @@ class AdminPostsController extends Controller
     }
 
 
-    public function post($id){
+    public function post($slug){
 
        
-        $post = Post::findOrFail($id);
+        $post = Post::whereSlug($slug)->first();
 
         $comments = $post->comments()->whereIsActive(1)->get();
 
         return view('post', compact('post','comments'));
-       
-
 
     }
+
+
+    public function posts()
+    {
+        
+        $posts = Post::paginate(2);
+
+        $categories = Category::all();
+
+        return view('blog', compact('posts', 'categories'));
+        
+    }
+
+    public function getPostByCategory($category){
+
+
+        $category = Category::whereName($category)->first();
+
+        $posts = $category->posts()->OrderBy('id','desc')->paginate(1);
+
+        return view('category', compact('posts'));
+
+    }
+
 
 }
