@@ -5,7 +5,7 @@
 
         <h1 class="page-header">
             Page Heading
-            <small>Secondary Text updated again</small>
+            <small>Secondary Text updated again and again</small>
         </h1>
 
         <!-- First Blog Post -->
